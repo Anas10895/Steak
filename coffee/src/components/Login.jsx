@@ -17,7 +17,7 @@ export default class Login extends Component {
   </Form.Group>
 </Form>
 <Button variant="primary" type="submit">
-    Login
+    Submit
   </Button>
             </div>
         )
