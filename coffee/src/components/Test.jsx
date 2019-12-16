@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-require("dotenv/config")
+import dotenv from 'dotenv/config'
 const mapStyles = {
     width: '100%',
     height: '100%',
   };
-export  class MapContainer extends Component {
+export class MapContainer extends Component {
 
     constructor(props) {
       super(props);
@@ -44,6 +44,8 @@ export  class MapContainer extends Component {
       );
     }
   }
-  export default GoogleApiWrapper({
-    apiKey: process.env.api
+  export default GoogleApiWrapper(
+
+      {
+    apiKey: process.env.REACT_APP_API,
   })(MapContainer);
