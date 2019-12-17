@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { register }  from '../functionAuth/functionAuth'
-import { Button, Checkbox, Form ,Container,Card } from 'semantic-ui-react'
+import { Button, Form  } from 'semantic-ui-react'
 import DatePicker from 'react-date-picker';
 
 export default class Register extends Component {

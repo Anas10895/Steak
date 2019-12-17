@@ -49,7 +49,7 @@ class Login extends Component {
             Submit
           </button>
           <p className="forgot-password text-right">
-            <a href="/register">dont have an account , sign up from here</a>
+            <a href="/register"> Sign up </a>
           </p>
         </Form>
       </div>
