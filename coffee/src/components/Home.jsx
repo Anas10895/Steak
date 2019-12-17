@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // import {Carousel} from 'react-bootstrap'
 import Carousel from './Carousel'
 import {Card, Button} from 'react-bootstrap'
+import Test from './Test'
 export default class Home extends Component {
 
 
@@ -23,7 +24,9 @@ export default class Home extends Component {
 
         return (
             <div>
+
 <Carousel/>
+<hr/>
 <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: 20, margin:"auto"}}>
             {products}
            {/* {console.log(this.props.data)} */}

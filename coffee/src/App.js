@@ -9,6 +9,10 @@ import Cart from'./components/Cart.jsx'
 import cart from './image/cart.png'
 import Home from './components/Home'
 import Test from './components/Test'
+import Proudectdetails from './components/Proudectdetails'
+
+// import Landing from './components/Landing'
+
 import DB from './db'
 export default class App extends Component {
   constructor(props){
@@ -23,17 +27,20 @@ export default class App extends Component {
     return (
       <div>
         <>
-  <Navbar bg="light" variant="light" sticky fixed="top">
+  <Navbar bg="light" variant="light" sticky ="top">
     <Navbar.Brand href="/">CafeX</Navbar.Brand>
     <Nav className="mr-auto">
       <Nav.Link href="/Home">Home</Nav.Link>
+      <Nav.Link href="/Test">Map</Nav.Link>
+
+      {/* <Nav.Link href="/Landing">Landing</Nav.Link> */}
+
 
     </Nav>
 
     <Nav.Link href="/Login">Login</Nav.Link>
     <Nav.Link href="/Register">Register</Nav.Link>
     <Navbar.Brand href="/Cart"><img src={cart} alt="cart"   height="40" /></Navbar.Brand>
-    <Nav.Link href="/Test">Test</Nav.Link>
 
 
 
@@ -49,6 +56,11 @@ export default class App extends Component {
  <Route  path="/Register" component={Register} />
  <Route path="/Cart" component={Cart}/>
  <Route path="/Test" component={Test}/>
+ <Route exaxt path='/proudectdetails/:id' render={(props) => this.state.data !== null ? <Proudectdetails {...props} data={this.state.data} handleCartToggle = {this.handleCartToggle}  select ={this.state.select} /> : null} />
+
+
+ {/* <Route path="/Landing" component={Landing}/> */}
+
 
  
 
