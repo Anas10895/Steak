@@ -1,72 +1,96 @@
 import React, { Component } from 'react'
-import { Form, Button, FormControl, Col} from 'react-bootstrap'
+import { register }  from '../functionAuth/functionAuth'
+import { Button, Checkbox, Form ,Container,Card } from 'semantic-ui-react'
+import DatePicker from 'react-date-picker';
 
 export default class Register extends Component {
-    
-    render() {
-        return (
-            <div>
-                <h1>Register Page</h1>
-                <Form>
-                <Form.Row>
-    <Form.Group as={Col} >
-      <Form.Label>First Name</Form.Label>
-      <Form.Control type="text" placeholder="First Name" />
-    </Form.Group>
+  state = {
+  };
+  onChangHandler = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+  onSubmitHandelr = e => {
+    e.preventDefault();
+    register(this.state);
+    this.props.history.push("/login");
+  };
+  onChange = date => this.setState({ date })
+  render() {
 
-    <Form.Group as={Col} >
-      <Form.Label>Last Name</Form.Label>
-      <Form.Control type="text" placeholder="Last Name" />
-    </Form.Group>
-  </Form.Row>
-  <Form.Row>
-    <Form.Group as={Col} controlId="formGridEmail">
-      <Form.Label>Email</Form.Label>
-      <Form.Control type="email" placeholder="Enter email" />
-    </Form.Group>
+    return (
+      <div class="container">
+        <Form onSubmit={this.onSubmitHandelr}>
+          <h3 className="ttb">Sign Up</h3>
+          <Form.Field className="form-group">
+            <label className="tb">First name</label>
+            <input
+              placeholder="First Name"
+              className="form-control"
+              name="first_name"
+              onChange={this.onChangHandler}
+            />
+          </Form.Field>
+          <Form.Field className="form-group">
+            <label className="tb">Last name</label>
+            <input
+              placeholder="Last Name"
+              className="form-control"
+              name="last_name"
+              onChange={this.onChangHandler}
+            />
+          </Form.Field>
+          <Form.Field className="form-group">
+            <label className="tb">Email address</label>
+            <input
+              placeholder="email"
+              className="form-control"
+              name="email"
+              onChange={this.onChangHandler}
+            />
+          </Form.Field>
+          <Form.Field className="form-group">
+            <label className="tb">Password</label>
+            <input
+              type="password"
+              placeholder="password"
+              className="form-control"
+              name="password"
+              onChange={this.onChangHandler}
+            />
+          </Form.Field>
+          <Form.Field className="form-group">
+            <label className="tb">Phone Number</label>
+            <input
+              type="phone"
+              placeholder="Phone number"
+              className="form-control"
+              name="phone"
+              onChange={this.onChangHandler}
+            />
+          </Form.Field>
 
 
-  </Form.Row>
-  <Form.Row>
+          <Form.Field className="form-group">
+            <label className="tb">Date of birth</label>
+            <br />
 
-  <Form.Group as={Col} controlId="formGridPassword">
-      <Form.Label>Password</Form.Label>
-      <Form.Control type="password" placeholder="Confirm Password" />
-    </Form.Group>
-    <Form.Group as={Col} controlId="formGridPassword">
-      <Form.Label>Confirm Password</Form.Label>
-      <Form.Control type="password" placeholder="Confirm Password" />
-    </Form.Group>
-    </Form.Row>
-
-  <Form.Row>
-    <Form.Group as={Col} controlId="formGridCity">
-      <Form.Label>City</Form.Label>
-      <Form.Control type="text" placeholder="Jeddah" />
-    </Form.Group>
-
-    <Form.Group as={Col} controlId="formGridState">
-      <Form.Label>State</Form.Label>
-      <Form.Control as="select">
-        <option>Macca</option>
-        <option>Riyadh</option>
-        <option>Ash-Sharqiyyah</option>
-
-      </Form.Control>
-    </Form.Group>
-
-
-  </Form.Row>
-
-  <Form.Group id="formGridCheckbox">
-    <Form.Check type="checkbox" label="Agree ? " />
-  </Form.Group>
-
-  <Button variant="primary" type="submit">
-  Register
-  </Button>
-</Form>
-            </div>
-        )
-    }
+          <DatePicker
+          onChange={this.onChange}
+          value={this.state.date}
+        />
+          </Form.Field>
+          {/* <input type="checkbox"  onChange={this.onChangHandler} name="role" value="stylist"/>  I am a stylist<br/> */}
+          <Button type="submit" className="btn btn-primary btn-block">
+            Submit
+          </Button>
+          <p className="forgot-password text-right">
+            Already registered <a href="/login" >sign in?</a>
+          </p>
+        </Form>
+      </div>
+    );
+  }
 }
+
