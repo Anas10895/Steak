@@ -33,17 +33,25 @@ export const login = (user)=>{
         return err
     }
         )
+
 }
+let id ="5df8c917778c9a4e637c9663"
+
 export const add = newItem => {
     return axios
-      .put(`http://localhost:2551/api/v1/stores/${shop()}/items/newitem`, newItem)
+      .put(`http://localhost:2551/api/v1/stores/${id}/items/newitem`, newItem)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };
-let id ="5df8c917778c9a4e637c9663"
   export const Order = newOrder => {
     axios
      .post("http://localhost:2551/api/v1/orders/neworder", newOrder)
+     .then(res => console.log(res))
+     .catch(err => console.log(err));
+ };
+ export const change = user => {
+    axios
+     .put(`http://localhost:2551/api/v1/users/profile/${shop()}`, user)
      .then(res => console.log(res))
      .catch(err => console.log(err));
  };

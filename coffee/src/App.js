@@ -11,11 +11,12 @@ import Home from './components/Home'
 import Map from './components/Map'
 import Owneradd from './components/Owneradd'
 import Checkout from './components/Checkout'
-
+import Store from './components/Store'
+import Update from './components/Update'
+import Profile from './components/Profile'
 
 import Proudectdetails from './components/Proudectdetails'
 // import Landing from './components/Landing'
-import DB from './db'
 export default class App extends Component {
   constructor(props){
     super(props)
@@ -64,7 +65,9 @@ logout =()=>{
         
       }
   render() {
-    console.log(this.state.store)
+    // console.log(this.state.store)
+    console.log(this.state.data);
+    
     return (
       <div>
         <>
@@ -74,7 +77,10 @@ logout =()=>{
       <Nav.Link href="/Home">Home</Nav.Link>
       <Nav.Link href="/Map">Map</Nav.Link>
       <Nav.Link href="/Owneradd">Owneradd</Nav.Link>
+      <Nav.Link href="/Update">UpdatePassword</Nav.Link>
+      <Nav.Link href="/Profile">Profile</Nav.Link>
 
+      
     </Nav>
     <Nav.Link href="/Login">Login</Nav.Link>
     <Nav.Link href="/Register">Register</Nav.Link>
@@ -90,16 +96,21 @@ logout =()=>{
 <Switch>
 
  <Route  path="/Home" render={(props) => <Home {...props} name="ebere" store={(this.state.store.length > 0) ? this.state.store : null } />}/>/>
+ 
+ <Route  path="/Profile" component={Profile} />
 
  <Route  path="/Login" component={Login} />
  <Route  path="/Register" component={Register} />
- <Route path="/Cart" render={(props) => this.state.data !== null ? <Cart {...props} data={this.state.data} handleCartToggle = {this.handleCartToggle}  cart ={this.state.cart} /> : null}></Route>
+ {/* render={(props) => this.state.data !== null ? <Cart {...props} data={this.state.data} handleCartToggle = {this.handleCartToggle}  cart ={this.state.cart} /> : null} */}
+ <Route path="/Cart" render={(props) => this.state.cart?  <Cart {...props} data={this.state.data} handleCartToggle = {this.handleCartToggle}  cart ={this.state.cart} /> : null}></Route>
  <Route path="/Map" component={Map}/>
  <Route path="/Owneradd" component={Owneradd}/>
  <Route path="/Checkout" component={Checkout}/>
+ <Route path="/Store/:id" render={(props) => <Store {...props} name="ebere" store={(this.state.store.length > 0) ? this.state.store : null } />}/>/>
+ <Route path="/Update" component={Update}/>
 
  
- <Route exaxt path='/proudectdetails/:id' render={(props) => this.state.data !== null ? <Proudectdetails {...props} data={this.state.data} handleCartToggle = {this.handleCartToggle}  select ={this.state.select} /> : null} />
+ <Route  path='/proudectdetails/:id' render={(props) => this.state.data == null ? <Proudectdetails {...props} data={this.state.data} handleCartToggle = {this.handleCartToggle}  select ={this.state.select} /> : null} />
 </Switch>
 </BrowserRouter> 
 </>

@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import { Table, Button } from "react-bootstrap";
 import {Order} from "../functionAuth/functionAuth"
 export default class Cart extends Component {
+  state = {
+    cart: this.props.cart,
+    redirect: false
 
-  componentWillMount() {
-   if ( !localStorage.product_cart   ){
-      this.props.history.push('/Home')
-      
-    }
+
+  };
+  componentDidMount() {
+  
       var cart = JSON.parse(localStorage.getItem("product_cart"));
       let temp = this.state.cart;
   
-      // temp.push(this.state.cart)
       temp.push(cart);
       this.setState({ cart: temp });
     }
@@ -28,9 +29,9 @@ export default class Cart extends Component {
     let elm =''
     let sum=0
   var cart = JSON.parse(localStorage.getItem("product_cart"));
-    let group = cart.reduce((r, a) => {
-      r[a.id] = [...(r[a.id] || []), a];
-      return r;
+    let group = cart.reduce((value, index) => {
+      value[index.id] = [...(value[index.id] || []), index];
+      return value;
     }, {});
     let cartelm = [];
     let j = 0;
@@ -38,14 +39,14 @@ export default class Cart extends Component {
     for (let i in group) {
       cartelm.push(
         group[i].map(elm => {
-          let price = elm.price * group[i].length;
+          let price = elm.item_price * group[i].length;
           total.push(price);
           if (group[i].indexOf(elm) === 0) {
             j++;
             return (
-              <tr key={elm.id}>
+              <tr key={elm._id}>
                 <td>{j}</td>
-                <td>{elm.name}</td>
+                <td>{elm.item_name}</td>
                 <td>{group[i].length}</td>
                 <td>{price} $</td>
               </tr>
@@ -61,7 +62,6 @@ export default class Cart extends Component {
       return elm;
     });
   
-
     return (
       <div>
         <Table striped bordered hover>
