@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { Table, Button } from "react-bootstrap";
-import Dialog from 'react-bootstrap-dialog'
-
+import {Order} from "../functionAuth/functionAuth"
 export default class Cart extends Component {
   state = {
     cart: this.props.cart,
+    redirect: false
 
 
   };
   componentWillMount() {
-   if (!localStorage.product_cart){
+   if (localStorage.user_token && !localStorage.product_cart   ){
       this.props.history.push('/Home')
       
     }
@@ -22,7 +22,11 @@ export default class Cart extends Component {
     }
 
   
-  
+    onSubmitHandelr = e => {
+      e.preventDefault();
+      Order(this.state.Cart);
+      this.props.history.push("/Checkout");
+    };
   
   render() {
    
@@ -39,12 +43,9 @@ export default class Cart extends Component {
     for (let i in group) {
       cartelm.push(
         group[i].map(elm => {
-          // console.log(elm);
-          // console.log(elm.price)
           let price = elm.price * group[i].length;
           total.push(price);
-          // console.log(group[i].length)
-          if (group[i].indexOf(elm) == 0) {
+          if (group[i].indexOf(elm) === 0) {
             j++;
             return (
               <tr key={elm.id}>
@@ -87,8 +88,7 @@ export default class Cart extends Component {
             </tr>
           </tbody>
         </Table>
-        <Button onClick={this.Order}>Check Out</Button>
-        <Dialog ref={(component) => { this.dialog = component }} />
+        <Button onClick={this.onSubmitHandelr}>Check Out</Button>
 
        
       </div>

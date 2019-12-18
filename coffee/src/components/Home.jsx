@@ -4,8 +4,21 @@ import Carousel from './Carousel'
 import {Card, Button} from 'react-bootstrap'
 // import Map from './Map'
 export default class Home extends Component {
+state={
+  data:null
+}
 
+  componentWillMount() {
+    fetch('http://localhost:2551/api/v1/stores/')
+    .then((response) => response.json())
+      .then((responseData) => {
+        // console.log(responseData2);
+        this.setState({
+          data: responseData,
 
+        });
+      });
+      }
     render() {
         const products = this.props.data.map((item)=> 
         <Card style={{ width: "20rem" }}>
@@ -27,7 +40,7 @@ export default class Home extends Component {
 
 <Carousel/>
 <hr/>
-<div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: 20, margin:"auto"}}>
+<div style={{ display: "grid", gridTemplateColumns: "repeat(3, 2fr)", gridGap: 20, margin:"auto"}}>
             {products}
            {/* {console.log(this.props.data)} */}
          </div>

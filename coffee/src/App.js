@@ -10,6 +10,8 @@ import cart from './image/cart.png'
 import Home from './components/Home'
 import Map from './components/Map'
 import Owneradd from './components/Owneradd'
+import Checkout from './components/Checkout'
+
 
 import Proudectdetails from './components/Proudectdetails'
 // import Landing from './components/Landing'
@@ -83,7 +85,9 @@ logout =()=>{
  <Route path="/Cart" render={(props) => this.state.data !== null ? <Cart {...props} data={this.state.data} handleCartToggle = {this.handleCartToggle}  cart ={this.state.cart} /> : null}></Route>
  <Route path="/Map" component={Map}/>
  <Route path="/Owneradd" component={Owneradd}/>
+ <Route path="/Checkout" component={Checkout}/>
 
+ 
  <Route exaxt path='/proudectdetails/:id' render={(props) => this.state.data !== null ? <Proudectdetails {...props} data={this.state.data} handleCartToggle = {this.handleCartToggle}  select ={this.state.select} /> : null} />
 </Switch>
 </BrowserRouter> 

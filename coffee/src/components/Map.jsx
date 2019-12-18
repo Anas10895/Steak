@@ -1,8 +1,21 @@
 import React from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import Axios from 'axios';
 export class MapContainer extends React.Component {
-  state = { userLocation: { lat: 32, lng: 32 }, loading: true };
+  state = { userLocation: { lat: 32, lng: 32 }, loading: true,data:null };
+
+
+      
   componentDidMount(props) {
+    fetch('http://localhost:2551/api/v1/stores/')
+    .then((response) => response.json())
+      .then((responseData) => {
+        // console.log(responseData2);
+        this.setState({
+          data: responseData,
+
+        });
+      });
     navigator.geolocation.getCurrentPosition(
       position => {
         const { latitude, longitude } = position.coords;
@@ -32,6 +45,8 @@ export class MapContainer extends React.Component {
     })
   }
   render() {
+        console.log(this.state.data)
+
     const { loading, userLocation } = this.state;
     const { google } = this.props;
     if (loading) {
