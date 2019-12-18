@@ -4,9 +4,9 @@ class Profile extends Component {
   constructor() {
     super()
     this.state = {
-      firstname: '',
-      lastname: '',
-      phonenumber: '',
+      first_name: '',
+      last_name: '',
+      phonen: '',
       email: '',
       errors: {}
     }
@@ -15,8 +15,8 @@ class Profile extends Component {
     const token = localStorage.usertoken
     if(token){
       const decoded = jwt_decode(token)
-      console.log(decoded)
-    this.setState(decoded)
+      console.log(decoded.user)
+    this.setState(decoded.user)
     }else{
       this.props.history.push('/Login')
     }
@@ -31,11 +31,11 @@ class Profile extends Component {
             <tbody>
               <tr>
                 <td>First Name</td>
-                <td>{this.state.firstname}</td>
+                <td>{this.state.first_name}</td>
               </tr>
               <tr>
                 <td>Last Name</td>
-                <td>{this.state.lastname}</td>
+                <td>{this.state.last_name}</td>
               </tr>
               <tr>
                 <td>Email</td>
