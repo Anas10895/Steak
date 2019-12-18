@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import {Carousel} from 'react-bootstrap'
 import Carousel from './Carousel'
 import {Card, Button} from 'react-bootstrap'
 // import Map from './Map'
@@ -7,7 +6,6 @@ import {Card, Button} from 'react-bootstrap'
 export default class Home extends Component {      
       
     render() {
-      // console.log(this.props.store)
       let products = []
       if(this.props.store !== null){
         products = this.props.store.map((item, index)=> 
@@ -32,7 +30,6 @@ export default class Home extends Component {
 <hr/>
 <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 2fr)", gridGap: 20, margin:"auto"}}>
             {products}
-           {/* {console.log(this.props.data)} */}
          </div>
           </div>
         )

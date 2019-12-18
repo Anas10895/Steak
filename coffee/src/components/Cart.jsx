@@ -18,7 +18,10 @@ export default class Cart extends Component {
       temp.push(cart);
       this.setState({ cart: temp });
     }
-
+    logout =()=>{
+      console.log("logedOut")
+      localStorage.removeItem('product_cart')
+          }
   
     onSubmitHandelr = e => {
       e.preventDefault();
@@ -98,7 +101,7 @@ export default class Cart extends Component {
             </tr>
           </tbody>
         </Table>
-        <Button onClick={this.onSubmitHandelr}>Check Out</Button>
+        <Button onClick={this.onSubmitHandelr  } >Check Out</Button>
 
        
       </div>

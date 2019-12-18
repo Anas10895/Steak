@@ -28,6 +28,15 @@ export default class ChangePassword extends Component {
         this.props.history.push('/Profile')
 
     }
+    componentDidMount() {
+        const token = localStorage.usertoken
+        if(token){
+          const decoded = jwt_decode(token)
+        this.setState(decoded.user)
+        }else{
+          this.props.history.push('/Login')
+        }
+      }
     
     render() {
 

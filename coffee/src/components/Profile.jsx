@@ -42,17 +42,13 @@ class Profile extends Component {
                 <td>{this.state.email}</td>
               </tr>
               <tr>
-                {/* <td>Change Password</td> */}
-                {/* <td><div class="button_cont" align="center"><a class="example_a" href="/EditProfile" target="_blank" rel="nofollow noopener">Edit Profile</a></div></td> */}
-                {/* <td><div class="button_cont" align="center"><a class="example_a" href="/ChangePassword" target="_blank" rel="nofollow noopener">Change Password</a></div></td> */}
-              </tr>
+               </tr>
             </tbody>
           </table>
           <button  className='submit-change' type="submit"><a  href="/Update" target="_blank" style={{color: 'white'}}>Change Password</a></button>
         </div>
         </div>
         <tr> 
-            {/* <div class="button_cont" align="center"><a class="example_a" href="/EditProfile" target="_blank" rel="nofollow noopener">Edit Profile</a></div> */}
         </tr>
       </div>
     )

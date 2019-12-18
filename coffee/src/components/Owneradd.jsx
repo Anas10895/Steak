@@ -1,11 +1,24 @@
 import React, { Component } from 'react'
 import { Button, Form  } from 'semantic-ui-react'
 import { add }  from '../functionAuth/functionAuth'
+import jwt_decode from 'jwt-decode'
 
 export default class Owneradd extends Component {
     state = {
         
     };
+    componentDidMount() {
+        const decoded = jwt_decode(localStorage.usertoken)
+        let id = decoded.user.role
+                if(id == "owner" ){
+                    alert("Hello Owner")
+        this.setState(decoded.user)
+        }else{
+alert("you are just a user A USER")
+          this.props.history.push('/Home')
+
+        }
+      }
     onChangHandler = e => {
       this.setState({
         [e.target.name]: e.target.value

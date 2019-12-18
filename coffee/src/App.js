@@ -14,9 +14,11 @@ import Checkout from './components/Checkout'
 import Store from './components/Store'
 import Update from './components/Update'
 import Profile from './components/Profile'
-
+import decode from 'jwt-decode'
 import Proudectdetails from './components/Proudectdetails'
-// import Landing from './components/Landing'
+
+
+
 export default class App extends Component {
   constructor(props){
     super(props)
@@ -25,6 +27,7 @@ export default class App extends Component {
     store:[],
     cart: [],
     select:null,
+    id:null
   }
   this.handleCartToggle = this.handleCartToggle.bind(this);
 
@@ -32,6 +35,7 @@ export default class App extends Component {
 logout =()=>{
   console.log("logedOut")
   localStorage.removeItem('usertoken')
+
       }
       handleCartToggle =(select) =>{
         console.log('cart');
@@ -62,11 +66,15 @@ logout =()=>{
         fetch('http://localhost:2551/api/v1/stores/')
         .then(response => response.json())
       .then(res => this.setState({ store:res }));
-        
+      if(localStorage.usertoken){
+        const decoded = decode(localStorage.usertoken)
+        this.setState({id:decoded.user.role}) 
       }
+      else{console.log("no token ")}
+    }
+      
+      
   render() {
-    // console.log(this.state.store)
-    console.log(this.state.data);
     
     return (
       <div>
@@ -76,21 +84,26 @@ logout =()=>{
     <Nav className="mr-auto">
       <Nav.Link href="/Home">Home</Nav.Link>
       <Nav.Link href="/Map">Map</Nav.Link>
-      <Nav.Link href="/Owneradd">Owneradd</Nav.Link>
-      <Nav.Link href="/Update">UpdatePassword</Nav.Link>
-      <Nav.Link href="/Profile">Profile</Nav.Link>
+      {( this.state.id== "owner") ? (<Nav.Link  href='/Owneradd' >Owneradd</Nav.Link> ) : null }
+
+      {(localStorage.usertoken) ? (<Nav.Link  href='/UpdatePassword' >UpdatePassword</Nav.Link> ) : null }
+
+    {(localStorage.usertoken) ? (<Nav.Link  href='/Profile' >Profile</Nav.Link> ) : null }
 
       
     </Nav>
-    <Nav.Link href="/Login">Login</Nav.Link>
-    <Nav.Link href="/Register">Register</Nav.Link>
+    {(!localStorage.usertoken) ? (<Nav.Link  href='/Login' >Login</Nav.Link> ) : null }
+
+    {(!localStorage.usertoken) ? (<Nav.Link  href='/Register' >Register</Nav.Link> ) : null }
+
+    
     {(localStorage.usertoken) ? (<Nav.Link  href='/' onClick={this.logout}>Logout</Nav.Link> ) : null }
 
 
 
 
+    {(localStorage.product_cart) ? (<Navbar.Brand href="/Cart"><img src={cart}   height="40" /></Navbar.Brand>) : null }
 
-    <Navbar.Brand href="/Cart"><img src={cart} alt="cart"   height="40" /></Navbar.Brand>
   </Navbar>
   <BrowserRouter> 
 <Switch>
