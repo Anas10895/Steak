@@ -15,22 +15,22 @@ export default class ChangePassword extends Component {
     }
     onSubmitHandelr = (e) => {
         e.preventDefault()
-        let token = localStorage.usertoken
-        const decoded = jwt_decode(token)
-        axios.put(`http://localhost:2551/api/v1/users/profile/${decoded._id}`, {
-            password: this.state.password,
-            newPassword: this.state.newPassword
+        const decoded = jwt_decode(localStorage.usertoken)
+        let id = decoded.user._id
+        console.log(id);
+        
+        
+        axios.put(`http://localhost:2551/api/v1/users/profile/${id}`, {
+
+            password: this.state.newPassword,
+            
         })
-            .then(res => {
-                if ("password not match" == res.data.msg) {
-                    this.setState({ wrong: true })
-                }
-                else {
-                    this.setState({ show: true })
-                }
-            })
+        this.props.history.push('/Profile')
+
     }
+    
     render() {
+
         return (
             <div className="formcontainer">
                 <SweetAlert
