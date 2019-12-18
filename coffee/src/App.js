@@ -20,7 +20,8 @@ export default class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-    data: DB.items,
+    data: null,
+    store:[],
     cart: [],
     select:null,
   }
@@ -40,7 +41,8 @@ logout =()=>{
     temp.push(select)
       this.setState({
        cart : temp,
-        select : select
+        select : select,
+        store:null
        })
        if(JSON.parse(localStorage.getItem("product_cart"))!=null){
        let temp = JSON.parse(localStorage.getItem("product_cart"));
@@ -55,7 +57,14 @@ logout =()=>{
          localStorage.setItem('product_cart', JSON.stringify(temp))
        }
       }
+      componentDidMount() {
+        fetch('http://localhost:2551/api/v1/stores/')
+        .then(response => response.json())
+      .then(res => this.setState({ store:res }));
+        
+      }
   render() {
+    console.log(this.state.store)
     return (
       <div>
         <>
@@ -79,7 +88,9 @@ logout =()=>{
   </Navbar>
   <BrowserRouter> 
 <Switch>
- <Route  path="/Home"  render={(props) => <Home {...props} data={this.state.data} />} />/>
+
+ <Route  path="/Home" render={(props) => <Home {...props} name="ebere" store={(this.state.store.length > 0) ? this.state.store : null } />}/>/>
+
  <Route  path="/Login" component={Login} />
  <Route  path="/Register" component={Register} />
  <Route path="/Cart" render={(props) => this.state.data !== null ? <Cart {...props} data={this.state.data} handleCartToggle = {this.handleCartToggle}  cart ={this.state.cart} /> : null}></Route>

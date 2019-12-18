@@ -21,7 +21,7 @@
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
         <Link color="inherit" href="https://material-ui.com/">
-        Midhat &Anas 
+        Midhat & Anas 
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}

@@ -1,41 +1,32 @@
 import React, { Component } from 'react'
 // import {Carousel} from 'react-bootstrap'
 import Carousel from './Carousel'
+import axios from "axios"
 import {Card, Button} from 'react-bootstrap'
 // import Map from './Map'
-export default class Home extends Component {
-state={
-  data:null
-}
 
-  componentWillMount() {
-    fetch('http://localhost:2551/api/v1/stores/')
-    .then((response) => response.json())
-      .then((responseData) => {
-        // console.log(responseData2);
-        this.setState({
-          data: responseData,
-
-        });
-      });
-      }
+export default class Home extends Component {      
+      
     render() {
-        const products = this.props.data.map((item)=> 
-        <Card style={{ width: "20rem" }}>
-       <a href = {`/proudectdetails/${item.id}`} ><Card.Img variant="top" src= {item.image} /></a>
-       <Card.Body>
-       <Card.Title>{item.name}</Card.Title>
-         <Card.Text>
-         {item.desc}
-         </Card.Text>
-         <Card.Title>{item.price}</Card.Title>
-         <a href = {`/proudectdetails/${item.id}`} > <Button variant="secondary"  >Buy Now </Button></a>
-       </Card.Body>
-     </Card>
-     )
-        // console.log(this.props.data)
+      // console.log(this.props.store)
+      let products = []
+      if(this.props.store !== null){
+        products = this.props.store.map((item, index)=> 
+          <Card key={index} style={{ width: "20rem" }}>
+                <a href = {`/proudectdetails/${item.id}`} ><Card.Img variant="top" src= {item.image} /></a>
+  
+                  <Card.Body>
+                  <Card.Title>{item.store_name}</Card.Title>
+                    <Card.Text> 
+                  {item.desc}
+                  </Card.Text>
+                  <Card.Title>{item.store_city}</Card.Title>
+                  <a href = {`/proudectdetails/${item.id}`} > <Button variant="secondary"  >Items list </Button></a> 
+                </Card.Body>
+        </Card>)
+      }
 
-        return (
+      return (
             <div>
 
 <Carousel/>

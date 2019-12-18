@@ -2,14 +2,9 @@ import React, { Component } from "react";
 import { Table, Button } from "react-bootstrap";
 import {Order} from "../functionAuth/functionAuth"
 export default class Cart extends Component {
-  state = {
-    cart: this.props.cart,
-    redirect: false
 
-
-  };
   componentWillMount() {
-   if (localStorage.user_token && !localStorage.product_cart   ){
+   if ( !localStorage.product_cart   ){
       this.props.history.push('/Home')
       
     }

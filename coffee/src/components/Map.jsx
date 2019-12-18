@@ -1,21 +1,9 @@
 import React from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import Axios from 'axios';
 export class MapContainer extends React.Component {
-  state = { userLocation: { lat: 32, lng: 32 }, loading: true,data:null };
-
-
-      
+  state = { userLocation: { lat: 32, lng: 32 }, datas:[],  loading: true };
   componentDidMount(props) {
-    fetch('http://localhost:2551/api/v1/stores/')
-    .then((response) => response.json())
-      .then((responseData) => {
-        // console.log(responseData2);
-        this.setState({
-          data: responseData,
-
-        });
-      });
+    fetch('http://localhost:2551/api/v1/stores/').then(response => response.json()).then(datas => this.setState({ datas : datas !== undefined ? datas : ""   }));
     navigator.geolocation.getCurrentPosition(
       position => {
         const { latitude, longitude } = position.coords;
@@ -36,17 +24,15 @@ export class MapContainer extends React.Component {
     );
   }
   displayMarkers = () => {
-    return this.state.stores.map((store, index) => {
+    return this.state.datas.map((data, index) => {
       return <Marker key={index} id={index} position={{
-        lat: store.latitude,
-        lng: store.longitude
+        lat: data.store_coordinates.lat,
+        lng: data.store_coordinates.long
       }}
         onClick={() => console.log("You clicked me!")} />
     })
   }
   render() {
-        console.log(this.state.data)
-
     const { loading, userLocation } = this.state;
     const { google } = this.props;
     if (loading) {
@@ -54,6 +40,8 @@ export class MapContainer extends React.Component {
     }
     return (
       <Map google={google} initialCenter={userLocation} zoom={15}>
+                {console.log(this.state.datas)}
+                {console.log(this.state.stores)}
         <Marker onClick={() => console.log("You clicked me!")} />
         {this.displayMarkers()}
       </Map>

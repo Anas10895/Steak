@@ -1,5 +1,13 @@
+import jwtDecode from 'jwt-decode'
 
 import axios from "axios";
+
+export function shop (){
+   let decToken = jwtDecode(localStorage.getItem('usertoken'))
+   return decToken.user_id
+}
+
+
 export const register = newUser => {
   return axios
     .post("/api/v1/users/register", newUser)
@@ -28,7 +36,7 @@ export const login = (user)=>{
 }
 export const add = newItem => {
     return axios
-      .put("http://localhost:2551/api/v1/stores/5df8cc4d778c9a4e637c9664/items/newitem", newItem)
+      .put(`http://localhost:2551/api/v1/stores/${shop()}/items/newitem`, newItem)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };
