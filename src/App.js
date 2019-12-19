@@ -63,7 +63,7 @@ logout =()=>{
        }
       }
       componentDidMount() {
-        fetch('http://localhost:2551/api/v1/stores/')
+        fetch('https://pro4-backend.herokuapp.com/api/v1/stores/')
         .then(response => response.json())
       .then(res => this.setState({ store:res }));
       if(localStorage.usertoken){
