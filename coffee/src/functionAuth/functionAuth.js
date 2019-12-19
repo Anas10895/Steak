@@ -35,11 +35,10 @@ export const login = (user)=>{
         )
 
 }
-let id ="5df8c917778c9a4e637c9663"
 
 export const add = newItem => {
     return axios
-      .put(`http://localhost:2551/api/v1/stores/${id}/items/newitem`, newItem)
+      .put(`http://localhost:2551/api/v1/stores/5df8cc4d778c9a4e637c9664/items/newitem`, newItem)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };

@@ -21,11 +21,7 @@ const payments = [
   { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
   { name: 'Expiry date', detail: '04/2024' },
 ];
-const   logout =()=>{
-  console.log("logedOut")
-  localStorage.removeItem('usertoken')
 
-      }
 const useStyles = makeStyles(theme => ({
   listItem: {
     padding: theme.spacing(1, 0),
@@ -82,12 +78,7 @@ export default function Review() {
                 <Grid item xs={6}>
                   <Typography gutterBottom>{payment.detail}</Typography>
                 </Grid>
-                <Button
-           
-                    onClick={logout}
-                    className={classes.button}
-                  >
-                  </Button>
+          
               </React.Fragment>
             ))}
           </Grid>

@@ -18,6 +18,9 @@ class Login extends Component {
     console.log(logSuccess)
     if(logSuccess ){
         this.props.history.push('/Home')
+        window.location.reload(true);
+
+
     }
     else{
       this.setState({ error : "Login error "})

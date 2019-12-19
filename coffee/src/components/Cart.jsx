@@ -18,14 +18,14 @@ export default class Cart extends Component {
       temp.push(cart);
       this.setState({ cart: temp });
     }
-    logout =()=>{
-      console.log("logedOut")
-      localStorage.removeItem('product_cart')
-          }
+   
   
     onSubmitHandelr = e => {
       e.preventDefault();
       Order(this.state.Cart);
+   
+    localStorage.removeItem('product_cart')
+            
       this.props.history.push("/Checkout");
     };
   
