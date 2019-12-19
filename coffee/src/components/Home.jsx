@@ -28,7 +28,7 @@ export default class Home extends Component {
 
 <Carousel/>
 <hr/>
-<div style={{ display: "grid", gridTemplateColumns: "repeat(3, 2fr)", margin:"30px"}}>
+<div style={{ display: "grid", gridTemplateColumns: "repeat(3, 2fr)", gridGap: 20,  margin:"30px"}}>
             {products}
          </div>
           </div>

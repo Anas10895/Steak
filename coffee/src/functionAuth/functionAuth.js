@@ -38,7 +38,7 @@ export const login = (user)=>{
 
 export const add = newItem => {
     return axios
-      .put(`http://localhost:2551/api/v1/stores/5df8cc4d778c9a4e637c9664/items/newitem`, newItem)
+      .put(`http://localhost:2551/api/v1/stores/5dfb0dadfdbdd40f3d6b2302/items/newitem`, newItem)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };
