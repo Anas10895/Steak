@@ -15,7 +15,6 @@ export default class Carousel1 extends Component {
       .then((responseData) => {
         // console.log(responseData);
         // console.log(this.state.tilte)
-        console.log(responseData)
 
         this.setState({
           data: responseData

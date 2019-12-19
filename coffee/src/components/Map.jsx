@@ -3,7 +3,7 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 export class MapContainer extends React.Component {
   state = { userLocation: { lat: 32, lng: 32 }, datas:[],  loading: true };
   componentDidMount(props) {
-    fetch('http://localhost:2551/api/v1/stores/').then(response => response.json()).then(datas => this.setState({ datas : datas !== undefined ? datas : ""   }));
+    fetch('https://pro4-backend.herokuapp.com/api/v1/stores/').then(response => response.json()).then(datas => this.setState({ datas : datas !== undefined ? datas : ""   }));
     navigator.geolocation.getCurrentPosition(
       position => {
         const { latitude, longitude } = position.coords;

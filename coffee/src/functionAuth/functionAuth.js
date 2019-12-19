@@ -38,19 +38,19 @@ export const login = (user)=>{
 
 export const add = newItem => {
     return axios
-      .put(`http://localhost:2551/api/v1/stores/5dfb0dadfdbdd40f3d6b2302/items/newitem`, newItem)
+      .put(`https://pro4-backend.herokuapp.com/api/v1/stores/5dfb0dadfdbdd40f3d6b2302/items/newitem`, newItem)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };
   export const Order = newOrder => {
     axios
-     .post("http://localhost:2551/api/v1/orders/neworder", newOrder)
+     .post("https://pro4-backend.herokuapp.com/v1/orders/neworder", newOrder)
      .then(res => console.log(res))
      .catch(err => console.log(err));
  };
  export const change = user => {
     axios
-     .put(`http://localhost:2551/api/v1/users/profile/${shop()}`, user)
+     .put(`https://pro4-backend.herokuapp.com/api/v1/users/profile/${shop()}`, user)
      .then(res => console.log(res))
      .catch(err => console.log(err));
  };

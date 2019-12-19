@@ -6,7 +6,7 @@ state={
     store:[]
 }
     componentDidMount(){
-        fetch(`http://localhost:2551/api/v1/stores/${this.props.match.params.id}/items`)
+        fetch(`https://pro4-backend.herokuapp.com/api/v1/stores/${this.props.match.params.id}/items`)
         .then(response => response.json())
         .then(res => this.setState({ store:res !== null ? res : "" }));
     }

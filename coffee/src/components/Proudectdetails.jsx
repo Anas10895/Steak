@@ -13,7 +13,7 @@ export default class proudectdetails extends Component {
       componentDidMount(){
         console.log(this.props);
         
-          fetch(`http://localhost:2551/api/v1/items/${this.props.match.params.id}`)
+          fetch(`https://pro4-backend.herokuapp.com/api/v1/items/${this.props.match.params.id}`)
           .then(response => response.json() )
           .then(res => this.setState({ store:res !== null ? res : "" }));
           

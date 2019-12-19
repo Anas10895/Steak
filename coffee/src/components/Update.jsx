@@ -20,7 +20,7 @@ export default class ChangePassword extends Component {
         console.log(id);
         
         
-        axios.put(`http://localhost:2551/api/v1/users/profile/${id}`, {
+        axios.put(`https://pro4-backend.herokuapp.com//api/v1/users/profile/${id}`, {
 
             password: this.state.newPassword,
             
