@@ -10,7 +10,7 @@ export default class Home extends Component {
       if(this.props.store !== null){
         products = this.props.store.map((item, index)=> 
           <Card key={index} style={{ width: "20rem" }}>
-                <a href = {`/Store/${item._id}`}  ><Card.Img variant="top" src= {item.image} /></a>
+                <a href = {`/Store/${item._id}`}  ><Card.Img variant="top" src= {item.store_images} /></a>
   
                   <Card.Body>
                   <Card.Title>{item.store_name}</Card.Title>
@@ -28,7 +28,7 @@ export default class Home extends Component {
 
 <Carousel/>
 <hr/>
-<div style={{ display: "grid", gridTemplateColumns: "repeat(3, 2fr)", gridGap: 20, margin:"auto"}}>
+<div style={{ display: "grid", gridTemplateColumns: "repeat(3, 2fr)", margin:"30px"}}>
             {products}
          </div>
           </div>
